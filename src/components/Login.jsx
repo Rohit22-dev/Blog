@@ -28,7 +28,7 @@ const Login = () => {
     if (isRegister) {
       try {
         console.log(user);
-        await fetch("http://localhost:8080/auth/register", {
+        await fetch("https://blog-zlon.onrender.com/auth/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const Login = () => {
     if (isLogin) {
       try {
         const { email, password } = user;
-        const res = await fetch("http://localhost:8080/auth/login", {
+        const res = await fetch("https://blog-zlon.onrender.com/auth/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),

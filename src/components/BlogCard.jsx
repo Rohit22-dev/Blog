@@ -17,7 +17,7 @@ const BlogCard = ({ data }) => {
     };
     try {
       await fetch(
-        `http://localhost:8080/blog/${data.userId}/comment`,
+        `https://blog-zlon.onrender.com/blog/${data.userId}/comment`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
@@ -46,7 +46,7 @@ const BlogCard = ({ data }) => {
   const fetchComments = async () => {
     try {
       const res = await fetch(
-        `http://localhost:8080/blog/${data._id}/comments`,
+        `https://blog-zlon.onrender.com/blog/${data._id}/comments`,
         {
           method: "GET",
         }

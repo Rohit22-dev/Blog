@@ -47,7 +47,7 @@ const Blog = () => {
 
       const postdata = { userId: user?._id, image: res.url, ...data };
       console.log(postdata);
-      await fetch("http://localhost:8080/blog", {
+      await fetch("https://blog-zlon.onrender.com/blog", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(postdata),
@@ -73,9 +73,12 @@ const Blog = () => {
 
   const fetchBlogs = async () => {
     try {
-      const res = await fetch(`http://localhost:8080/blog/${user._id}/blogs`, {
-        method: "GET",
-      });
+      const res = await fetch(
+        `https://blog-zlon.onrender.com/blog/${user._id}/blogs`,
+        {
+          method: "GET",
+        }
+      );
       const data = await res.json();
       setUserBlogs(data);
     } catch (error) {
@@ -137,7 +140,7 @@ const Blog = () => {
           <h1 className="text-center -mb-6 mt-2 text-4xl font-medium underline underline-offset-4 ">
             Your Blogs
           </h1>
-          {userBlogs?.map((userBlog, index) => (
+          {userBlogs?.reverse().map((userBlog, index) => (
             <BlogCard key={index} data={userBlog} />
           ))}
         </div>

@@ -4,7 +4,7 @@ import { FadeLoader } from "react-spinners";
 import BlogCard from "./BlogCard";
 
 const Home = () => {
-  const [blogs, setBlogs] = useState(null);
+  const [blogs, setBlogs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const Home = () => {
   const fetchBlogs = async () => {
     try {
       setIsLoading(true);
-      const res = await fetch("http://localhost:8080/blog", { method: "GET" });
+      const res = await fetch("https://blog-zlon.onrender.com/blog");
       const data = await res.json();
       // console.log(data);
       setBlogs(data);
