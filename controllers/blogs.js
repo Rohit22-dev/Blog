@@ -50,19 +50,33 @@ export const getUserBlogs = async (req, res) => {
   }
 };
 
+//Delete
+
+export const deleteBlog = async (req, res) => {
+  try {
+    const { blogId } = req.params;
+    await Blog.deleteOne({ _id: blogId });
+    res.status(200).json({ message: "Deleted successfully" });
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+};
+
 //Get comment
 export const getBlogComment = async (req, res) => {
   try {
-    console.log("object");
+    // console.log("object");
     const { blogId } = req.params;
-    console.log(blogId);
+    // console.log(blogId);
     const blog = await Blog.find({ _id: blogId });
-    console.log("blog", blog);
+    // console.log("blog", blog);
     res.status(200).json(blog);
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
 };
+
+//Add comment
 
 export const addComment = async (req, res) => {
   const { _id, userName, comment } = req.body;
