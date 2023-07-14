@@ -1,5 +1,5 @@
 import express from "express";
-import { getBlogs, getUserBlogs } from "../controllers/blogs.js";
+import { addComment, getBlogComment, getBlogs, getUserBlogs } from "../controllers/blogs.js";
 
 const router = express.Router();
 
@@ -7,9 +7,10 @@ const router = express.Router();
 
 router.get("/", getBlogs);
 router.get("/:userId/blogs", getUserBlogs);
+router.get("/:blogId/comments", getBlogComment);
 
-//Update
+// Update
 
-// router.patch("/:id/like", verifyToken, likePost);
+router.patch("/:id/comment", addComment);
 
 export default router;

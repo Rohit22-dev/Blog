@@ -1,5 +1,16 @@
 import mongoose, { Schema } from "mongoose";
 
+const CommentSchema = Schema({
+  userName: {
+    type: String,
+    required: true,
+  },
+  comment: {
+    type: String,
+    required: true,
+  },
+});
+
 const BlogSchema = Schema(
   {
     userId: {
@@ -15,16 +26,10 @@ const BlogSchema = Schema(
       required: true,
     },
 
-    image: {
-      public_id: {
-        type: String,
-        required: true,
-      },
-      url: { type: String, required: true },
-    },
+    image: String,
     description: { type: String, required: true },
     comments: {
-      type: Array,
+      type: [CommentSchema],
       default: [],
     },
   },

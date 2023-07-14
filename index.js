@@ -6,13 +6,14 @@ import { register } from "./controllers/Auth.js";
 import cors from "cors";
 import { createBlog } from "./controllers/blogs.js";
 import bodyParser from "body-parser";
+import dotenv from "dotenv";
 
+dotenv.config();
 const app = express();
 app.use(cors());
 app.use(bodyParser.json({ limit: "10mb" }));
 
-const url =
-  "mongodb+srv://Octivion:rk220101@cluster0.7euyxep.mongodb.net/?retryWrites=true&w=majority";
+const url = process.env.MONGO_URL;
 const port = 8080;
 
 mongoose

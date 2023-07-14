@@ -1,33 +1,27 @@
 import User from "../models/User.js";
 import Blog from "../models/Blog.js";
-import cloudinary from "../utils/cloudinary.js";
 
 //create blog
 
 export const createBlog = async (req, res) => {
   try {
     const { userId, title, image, description } = req.body;
-    console.log(req.body);
-    const result = await cloudinary.v2.uploader.upload(image, {
-      folder: "blogs",
-    });
-    console.log(result);
+
     const user = await User.findOne({ _id: userId });
-    console.log(user);
+
     const newBlog = await new Blog({
       userId,
       userName: user.name,
       title,
-      image: { public_id: result.public_id, url: result.secure_url },
+      image,
       description,
       comments: [],
     });
-    const savedBlog = await newBlog.save();
-    console.log(savedBlog);
-    const blog = await Blog.find();
-    res.status(201).json(blog);
+    await newBlog.save();
+
+    res.status(201).json({ msg: "Blog saved successfully" });
   } catch (err) {
-    res.status(409).json({ message: err.message });
+    res.status(409).json({ message: err });
   }
 };
 
@@ -36,6 +30,7 @@ export const createBlog = async (req, res) => {
 export const getBlogs = async (req, res) => {
   try {
     const blog = await Blog.find();
+    // console.log(blog);
     res.status(200).json(blog);
   } catch (err) {
     res.status(404).json({ message: err.message });
@@ -44,35 +39,56 @@ export const getBlogs = async (req, res) => {
 
 export const getUserBlogs = async (req, res) => {
   try {
+    // console.log("object");
     const { userId } = req.params;
-    const blog = await Blog.find({ userId });
+    // console.log(userId);
+    const blog = await Blog.find({ userId: userId });
+    // console.log(blog);
     res.status(200).json(blog);
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
 };
 
-//Update
+//Get comment
+export const getBlogComment = async (req, res) => {
+  try {
+    console.log("object");
+    const { blogId } = req.params;
+    console.log(blogId);
+    const blog = await Blog.find({ _id: blogId });
+    console.log("blog", blog);
+    res.status(200).json(blog);
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+};
 
-// export const likePost = async (req, res) => {
-//     try {
-//       const { id } = req.params;
-//       const { userId } = req.body;
-//       const blog = await Blog.find(id);
+export const addComment = async (req, res) => {
+  const { _id, userName, comment } = req.body;
+  console.log(req.body);
 
-//       if (isLiked) {
-//         blog.like.delete(userId);
-//       } else {
-//         blog.likes.set(userId, true);
-//       }
+  try {
+    const updatedBlog = await Blog.findByIdAndUpdate(
+      _id,
+      {
+        $push: {
+          comments: { userName: userName, comment: comment },
+        },
+      },
+      { new: true }
+    );
 
-//       const updatedPost = await Blog.findByIdAndUpdate(
-//         id,
-//         { likes: blog.likes },
-//         { new: true }
-//       );
-//       res.status(200).json(updatedPost);
-//     } catch (err) {
-//       res.status(404).json({ message: err.message });
-//     }
-//   };
+    if (!updatedBlog) {
+      return res.status(404).json({ message: "Blog not found" });
+    }
+
+    updatedBlog.comments.forEach((comment) => {
+      comment._id = undefined;
+    });
+
+    res.status(200).json(updatedBlog);
+  } catch (error) {
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};

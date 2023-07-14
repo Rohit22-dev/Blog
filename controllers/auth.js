@@ -26,20 +26,20 @@ export const register = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log(email, password);
     const user = await User.findOne({ email: email });
-    console.log(user);
-    if (!user) return res.status(400).json({ message: "User not found" });
-    console.log("first");
+    if (!user)
+      return res.status(400).json({ error: true, message: "User not found." });
+
     const isMatch = await bcrypt.compare(password, user.password);
-    console.log(isMatch);
     if (!isMatch)
-      return res.status(400).json({ message: "Invalid credentials" });
-    console.log("second");
+      return res
+        .status(400)
+        .json({ error: true, message: "Invalid credentials" });
+
     delete user.password;
-    console.log(user);
-    res.status(200).json({ user });
+    res.status(200).json({ error: false, user: user });
   } catch (err) {
     res.status(500).json({ error: err.message });
+    console.log(err);
   }
 };
