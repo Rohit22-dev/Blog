@@ -33,7 +33,7 @@ const Home = () => {
         </div>
       ) : (
         <div className="flex flex-col w-full lg:w-2/3 p-20 gap-10">
-          {blogs?.map((blog, index) => (
+          {blogs?.reverse().map((blog, index) => (
             <BlogCard key={index} data={blog} />
           ))}
         </div>
