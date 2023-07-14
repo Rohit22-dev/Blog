@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import  { Schema, model } from "mongoose";
 
 const CommentSchema = Schema({
   userName: {
@@ -36,6 +36,6 @@ const BlogSchema = Schema(
   { timeStamp: true }
 );
 
-const Blog = mongoose.model("Blog", BlogSchema);
+const Blog = model("Blog", BlogSchema);
 
 export default Blog;

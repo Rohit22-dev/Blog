@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 import express from "express";
 import authRoute from "./routes/auth.js";
 import blogRoute from "./routes/blog.js";
-import { register } from "./controllers/Auth.js";
 import cors from "cors";
 import { createBlog } from "./controllers/blogs.js";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+import { register } from "./controllers/authUser.js";
 
 dotenv.config();
 const app = express();
