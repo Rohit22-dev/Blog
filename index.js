@@ -14,7 +14,7 @@ app.use(cors());
 app.use(bodyParser.json({ limit: "10mb" }));
 
 const url = process.env.MONGO_URL;
-const port = 8080;
+const port = process.env.PORT || 8080;
 
 mongoose
   .connect(url, {
