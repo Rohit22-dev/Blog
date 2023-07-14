@@ -1,7 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setLogin } from "@/store/slice";
+import { toast } from "react-toastify";
+import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 
 const Login = () => {
   const initialState = {
@@ -11,9 +13,11 @@ const Login = () => {
   };
   const [user, setUser] = useState(initialState);
   const [type, setType] = useState("Login");
+  const [error, setError] = useState({ isError: false, msg: "" });
   const isLogin = type === "Login";
   const isRegister = type === "Register";
   const dispatch = useDispatch();
+  const [showPsw, setShowPsw] = useState(false);
 
   const toggleType = () => {
     setType(type === "Login" ? "Register" : "Login");
@@ -47,10 +51,17 @@ const Login = () => {
           body: JSON.stringify({ email, password }),
         });
         const data = await res.json();
-        console.log(data);
-        dispatch(setLogin(data));
+        // console.log({ user: data?.user });
+        if (data.error) {
+          console.log(data.message);
+          setError({ isError: true, msg: data?.message });
+          toast.error(data?.message, { autoClose: 3000 });
+        } else {
+          toast.success("Login successful", { autoClose: 2000 });
+          dispatch(setLogin({ user: data?.user }));
+        }
       } catch (error) {
-        console.log(error);
+        console.log(error.message);
       }
     }
   };
@@ -59,9 +70,11 @@ const Login = () => {
     <div className="flex-grow flex items-center justify-center bg-img">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-6 p-5 bg-teal-400 rounded-lg shadow-lg shadow-black/25 "
+        className={
+          "flex flex-col gap-6 p-5 bg-teal-400 rounded-lg shadow-lg shadow-black/25 lg:w-1/3"
+        }
       >
-        <h1 className="text-center text-xl font-semibold text-teal-900">
+        <h1 className="text-center text-xl lg:text-4xl font-semibold text-teal-900">
           {isLogin ? "Welcome back!" : "Create new account"}
         </h1>
         {isRegister && (
@@ -73,7 +86,7 @@ const Login = () => {
               value={user.name}
               placeholder="Username"
               onChange={(e) => setUser({ ...user, name: e.target.value })}
-              className="outline-none rounded-md p-1 w-full shadow-inner bg-teal-100 shadow-teal-600"
+              className="outline-none rounded-md p-3 w-full shadow-inner bg-teal-100 shadow-teal-600"
             />
           </div>
         )}
@@ -85,23 +98,42 @@ const Login = () => {
             value={user.email}
             placeholder="abc@gmail.com"
             onChange={(e) => setUser({ ...user, email: e.target.value })}
-            className="outline-none rounded-md p-1 w-full shadow-inner bg-teal-100 shadow-teal-600"
+            className={`outline-none rounded-md p-3 w-full shadow-inner bg-teal-100 shadow-teal-600 ${
+              error.msg === "User not found." &&
+              "border-2 border-red-500 border-solid"
+            }`}
           />
         </div>
         <div>
           <label>Password</label>
-          <input
-            type="password"
-            required
-            value={user.password}
-            placeholder="******"
-            onChange={(e) => setUser({ ...user, password: e.target.value })}
-            className="outline-none rounded-md p-1 w-full shadow-inner bg-teal-100 shadow-teal-600 "
-          />
+          <div
+            className={`rounded-md p-3 w-full shadow-inner bg-teal-100 shadow-teal-600 flex justify-between items-center ${
+              error.msg === "Invalid credentials" &&
+              "border-2 border-red-500 border-solid"
+            }`}
+          >
+            <input
+              type={showPsw ? "text" : "password"}
+              required
+              value={user.password}
+              placeholder="******"
+              onChange={(e) => setUser({ ...user, password: e.target.value })}
+              className="outline-none bg-transparent"
+            />
+            <span
+              onClick={() => setShowPsw(!showPsw)}
+              className="text-teal-700 text-lg cursor-pointer"
+            >
+              {!showPsw ? <BsEyeSlashFill /> : <BsEyeFill />}
+            </span>
+          </div>
         </div>
         <button className="bg-teal-700 py-2 mt-4 rounded-lg text-white shadow-md shadow-black/50 hover:shadow-none">
           {isLogin ? "Login" : "Register"}
         </button>
+        {/* {error.isError && (
+          <span className="text-red-500">Error:&nbsp;{error.msg}</span>
+        )} */}
         <p className="text-slate-800 text-sm pl-1 ">
           {isLogin ? "Don't have an account! " : "Already have an account! "}
           &nbsp;

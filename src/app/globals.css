@@ -3,9 +3,34 @@
 @tailwind utilities;
 
 .btn-primary {
-  @apply bg-teal-700 py-1 px-4 rounded-lg text-white  shadow-md shadow-black/50 hover:shadow-none;
+  @apply bg-teal-700 py-1 px-4 rounded-lg text-white shadow-md shadow-black/50 hover:shadow-none;
 }
 
 .bg-img {
   background-image: url("../../public/images/bg.png");
 }
+
+label {
+  @apply lg:text-xl font-medium text-black/75;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #0f766e;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}
+

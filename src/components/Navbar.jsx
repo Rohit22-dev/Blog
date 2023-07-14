@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaRegUser } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ const Navbar = () => {
 
   const logout = () => {
     dispatch(setLogin({}));
+    toast.success("Logout successful", { autoClose: 2000 });
   };
 
   const CustomLink = ({ link, title }) => {
@@ -25,13 +27,13 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-full sticky flex justify-around px-16 py-2 shadow-md shadow-teal-500 bg-teal-400">
-      <h1 className="flex-grow ml-32 font-bold text-xl">Blog Assignment</h1>
-      <nav className="flex gap-10 px-20 lg:px-32 items-center">
+    <div className="w-full sticky flex justify-around px-6 lg:px-16 py-2 shadow-md shadow-teal-500 bg-teal-400">
+      <h1 className="flex-grow lg:ml-20 font-bold text-xl">Blog Assignment</h1>
+      <nav className="flex gap-4 w-1/2 md:gap-6 px-4 md:px-20 lg:px-32 items-center">
         <CustomLink link="/" title="Home" />
         <CustomLink link="/blog" title="Blog" />
         <CustomLink link="/about" title="About" />
-        <div className="px-2 p-1 rounded-lg font-semibold hover:bg-teal-700 hover:text-white cursor-pointer flex items-center gap-2 shadow-md shadow-teal-600 border-[1px] border-teal-500 hover:border-none">
+        <div className="px-2 p-1 rounded-lg font-semibold flex items-center gap-2 shadow-md shadow-teal-600 border-[1px] border-teal-500 ">
           <FaRegUser />
           {user?.name}
         </div>
