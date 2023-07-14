@@ -83,7 +83,7 @@ export const addComment = async (req, res) => {
       return res.status(404).json({ message: "Blog not found" });
     }
 
-    updatedBlog.comments.forEach((comment) => {
+    updatedBlog?.comments?.forEach((comment) => {
       comment._id = undefined;
     });
 
