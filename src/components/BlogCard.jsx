@@ -22,11 +22,14 @@ const BlogCard = ({ data, isEditable, setData }) => {
       comment: comment,
     };
     try {
-      await fetch(`http://localhost:8080/blog/${data.userId}/comment`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
+      await fetch(
+        `https://blog-zlon.onrender.com/blog/${data.userId}/comment`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        }
+      );
       fetchComments();
     } catch (error) {
       console.log(error.message);
@@ -48,7 +51,7 @@ const BlogCard = ({ data, isEditable, setData }) => {
   const fetchComments = async () => {
     try {
       const res = await fetch(
-        `http://localhost:8080/blog/${data._id}/comments`,
+        `https://blog-zlon.onrender.com/blog/${data._id}/comments`,
         {
           method: "GET",
         }
@@ -78,7 +81,7 @@ const BlogCard = ({ data, isEditable, setData }) => {
       currentImage: data.image,
     });
     console.log(data._id);
-    await fetch(`http://localhost:8080/blog/${data._id}/delete`, {
+    await fetch(`https://blog-zlon.onrender.com/blog/${data._id}/delete`, {
       method: "GET",
     });
   };

@@ -53,7 +53,7 @@ const Blog = () => {
 
       const postdata = { userId: user?._id, image: res.url, ...data };
       console.log(postdata);
-      await fetch("http://localhost:8080/blog", {
+      await fetch("https://blog-zlon.onrender.com/blog", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(postdata),
@@ -79,9 +79,12 @@ const Blog = () => {
   const fetchBlogs = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`http://localhost:8080/blog/${user._id}/blogs`, {
-        method: "GET",
-      });
+      const res = await fetch(
+        `https://blog-zlon.onrender.com/blog/${user._id}/blogs`,
+        {
+          method: "GET",
+        }
+      );
       const data = await res.json();
       setUserBlogs(data);
       setLoading(false);

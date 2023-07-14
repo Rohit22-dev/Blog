@@ -14,7 +14,7 @@ const Home = () => {
   const fetchBlogs = async () => {
     try {
       setIsLoading(true);
-      const res = await fetch("http://localhost:8080/blog");
+      const res = await fetch("https://blog-zlon.onrender.com/blog");
       const data = await res.json();
       // console.log(data);
       setBlogs(data);
