@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { setLogin } from "@/store/slice";
 import { toast } from "react-toastify";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
+import { PropagateLoader } from "react-spinners";
 
 const Login = () => {
   const initialState = {
@@ -18,6 +19,7 @@ const Login = () => {
   const isRegister = type === "Register";
   const dispatch = useDispatch();
   const [showPsw, setShowPsw] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   const toggleType = () => {
     setType(type === "Login" ? "Register" : "Login");
@@ -28,7 +30,7 @@ const Login = () => {
     if (isRegister) {
       try {
         console.log(user);
-        await fetch("https://blog-zlon.onrender.com/auth/register", {
+        await fetch("http://localhost:8080/auth/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -44,8 +46,9 @@ const Login = () => {
 
     if (isLogin) {
       try {
+        setLoading(true);
         const { email, password } = user;
-        const res = await fetch("https://blog-zlon.onrender.com/auth/login", {
+        const res = await fetch("http://localhost:8080/auth/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email, password }),
@@ -53,13 +56,13 @@ const Login = () => {
         const data = await res.json();
         // console.log({ user: data?.user });
         if (data.error) {
-          console.log(data.message);
           setError({ isError: true, msg: data?.message });
           toast.error(data?.message, { autoClose: 3000 });
         } else {
           toast.success("Login successful", { autoClose: 2000 });
           dispatch(setLogin({ user: data?.user }));
         }
+        setLoading(false);
       } catch (error) {
         console.log(error.message);
       }
@@ -128,8 +131,16 @@ const Login = () => {
             </span>
           </div>
         </div>
-        <button className="bg-teal-700 py-2 mt-4 rounded-lg text-white shadow-md shadow-black/50 hover:shadow-none">
-          {isLogin ? "Login" : "Register"}
+        <button className="bg-teal-700 h-10 py-2 mt-4 rounded-lg text-white shadow-md shadow-black/50 hover:shadow-none ">
+          {isLogin ? (
+            isLoading ? (
+              <PropagateLoader loading={isLoading} color="#2dd4bf" size={10} />
+            ) : (
+              "Login"
+            )
+          ) : (
+            "Register"
+          )}
         </button>
         {/* {error.isError && (
           <span className="text-red-500">Error:&nbsp;{error.msg}</span>

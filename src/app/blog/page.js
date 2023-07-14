@@ -7,26 +7,32 @@ import { useSelector } from "react-redux";
 import imagekit from "@/utils/imagekit";
 import { toast } from "react-toastify";
 import BlogCard from "@/components/BlogCard";
+import { FadeLoader } from "react-spinners";
 
 const Blog = () => {
   const user = useSelector((state) => state.counter.user);
   const [words, setWords] = useState(0);
   const [image, setImage] = useState(null);
-  const [currentImage, setCurrentImage] = useState(
-    "https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg"
-  );
 
-  const initialData = { title: "", description: "" };
+  const initialData = {
+    title: "",
+    description: "",
+    currentImage:
+      "https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg",
+  };
   const [data, setData] = useState(initialData);
   const [isUpload, setIsUpload] = useState(false);
-  const [userBlogs, setUserBlogs] = useState(null);
+  const [userBlogs, setUserBlogs] = useState([]);
+  const [isLoading, setLoading] = useState(false);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
     setImage(file);
     reader.readAsDataURL(file);
-    setCurrentImage(URL.createObjectURL(file));
+    setData((prevData) => {
+      return { ...prevData, currentImage: URL.createObjectURL(file) };
+    });
   };
 
   const handleDescription = (e) => {
@@ -47,7 +53,7 @@ const Blog = () => {
 
       const postdata = { userId: user?._id, image: res.url, ...data };
       console.log(postdata);
-      await fetch("https://blog-zlon.onrender.com/blog", {
+      await fetch("http://localhost:8080/blog", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(postdata),
@@ -55,9 +61,6 @@ const Blog = () => {
       toast.success("Post successfully", { autoClose: 2000 });
       setIsUpload(false);
       setData(initialData);
-      setCurrentImage(
-        "https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg"
-      );
     } catch (error) {
       console.log(error);
     }
@@ -68,19 +71,20 @@ const Blog = () => {
   };
 
   useEffect(() => {
-    fetchBlogs();
-  }, [data]);
+    if (!isUpload) {
+      fetchBlogs();
+    }
+  }, [isUpload]);
 
   const fetchBlogs = async () => {
     try {
-      const res = await fetch(
-        `https://blog-zlon.onrender.com/blog/${user._id}/blogs`,
-        {
-          method: "GET",
-        }
-      );
+      setLoading(true);
+      const res = await fetch(`http://localhost:8080/blog/${user._id}/blogs`, {
+        method: "GET",
+      });
       const data = await res.json();
       setUserBlogs(data);
+      setLoading(false);
     } catch (error) {
       toast.error(error.message);
     }
@@ -94,7 +98,7 @@ const Blog = () => {
             Blog
           </h1>
           <img
-            src={currentImage}
+            src={data.currentImage}
             alt="zoro"
             className="rounded-lg h-96 object-fill"
           />
@@ -140,9 +144,22 @@ const Blog = () => {
           <h1 className="text-center -mb-6 mt-2 text-4xl font-medium underline underline-offset-4 ">
             Your Blogs
           </h1>
-          {userBlogs?.reverse().map((userBlog, index) => (
-            <BlogCard key={index} data={userBlog} />
-          ))}
+          {isLoading ? (
+            <div className="grid place-items-center flex-grow">
+              <FadeLoader loading={isLoading} color="#0f766e" />
+            </div>
+          ) : (
+            userBlogs
+              ?.reverse()
+              .map((userBlog, index) => (
+                <BlogCard
+                  key={index}
+                  data={userBlog}
+                  isEditable={true}
+                  setData={setData}
+                />
+              ))
+          )}
         </div>
       </div>
     </Layout>
