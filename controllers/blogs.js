@@ -62,6 +62,31 @@ export const deleteBlog = async (req, res) => {
   }
 };
 
+//Update
+
+export const updateBlog = async (req, res) => {
+  const { _id, image, title, description } = req.body;
+  console.log(req.body);
+
+  try {
+    await Blog.findByIdAndUpdate(
+      _id,
+      {
+        $set: {
+          image,
+          title,
+          description,
+        },
+      },
+      { new: true } // Return the updated blog after the update
+    );
+
+    res.status(200).json({ msg: "Blog updated" });
+  } catch (error) {
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
 //Get comment
 export const getBlogComment = async (req, res) => {
   try {

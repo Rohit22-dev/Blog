@@ -5,6 +5,7 @@ import {
   getBlogComment,
   getBlogs,
   getUserBlogs,
+  updateBlog,
 } from "../controllers/blogs.js";
 
 const router = express.Router();
@@ -18,6 +19,7 @@ router.get("/:blogId/comments", getBlogComment);
 // Update
 
 router.patch("/:id/comment", addComment);
+router.patch("/update", updateBlog);
 
 //Delete
 
