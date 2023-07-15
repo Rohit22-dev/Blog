@@ -1,4 +1,4 @@
-import  { Schema, model } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const CommentSchema = Schema({
   userName: {
@@ -26,7 +26,16 @@ const BlogSchema = Schema(
       required: true,
     },
 
-    image: String,
+    image: {
+      url: {
+        type: String,
+        required: true,
+      },
+      fileId: {
+        type: String,
+        required: true,
+      },
+    },
     description: { type: String, required: true },
     comments: {
       type: [CommentSchema],

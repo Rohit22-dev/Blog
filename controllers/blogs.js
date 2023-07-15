@@ -13,7 +13,7 @@ export const createBlog = async (req, res) => {
       userId,
       userName: user.name,
       title,
-      image,
+      image: { url: image.url, fileId: image.fileId },
       description,
       comments: [],
     });
