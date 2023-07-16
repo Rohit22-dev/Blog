@@ -43,3 +43,39 @@ export const login = async (req, res) => {
     console.log(err);
   }
 };
+
+//Update user
+
+export const updateProfileImage = async (req, res) => {
+  try {
+    const { image } = req.body;
+    const { userId } = req.params;
+    const user = await User.findByIdAndUpdate(
+      { _id: userId },
+      { $set: { image } },
+      { new: true }
+    );
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+    console.log(err);
+  }
+};
+
+export const updateProfileAbout = async (req, res) => {
+  try {
+    const { about } = req.body;
+    const { userId } = req.params;
+    console.log(about, userId);
+    const user = await User.findByIdAndUpdate(
+      { _id: userId },
+      { $set: { about } },
+      { new: true }
+    );
+    console.log("end about data", user);
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+    console.log(err);
+  }
+};

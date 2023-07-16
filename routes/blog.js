@@ -23,6 +23,6 @@ router.patch("/update", updateBlog);
 
 //Delete
 
-router.get("/:blogId/delete", deleteBlog);
+router.delete("/:blogId/delete", deleteBlog);
 
 export default router;

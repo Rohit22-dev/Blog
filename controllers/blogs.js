@@ -9,6 +9,10 @@ export const createBlog = async (req, res) => {
 
     const user = await User.findOne({ _id: userId });
 
+    if (!user) {
+      return res.status(400).json({ error: true, message: "User not found." });
+    }
+
     const newBlog = await new Blog({
       userId,
       userName: user.name,
@@ -55,6 +59,7 @@ export const getUserBlogs = async (req, res) => {
 export const deleteBlog = async (req, res) => {
   try {
     const { blogId } = req.params;
+    console.log(blogId);
     await Blog.deleteOne({ _id: blogId });
     res.status(200).json({ message: "Deleted successfully" });
   } catch (err) {
@@ -66,7 +71,6 @@ export const deleteBlog = async (req, res) => {
 
 export const updateBlog = async (req, res) => {
   const { _id, image, title, description } = req.body;
-  console.log(req.body);
 
   try {
     await Blog.findByIdAndUpdate(

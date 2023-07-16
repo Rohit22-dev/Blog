@@ -1,4 +1,4 @@
-import  { Schema, model } from "mongoose";
+import { Schema, model } from "mongoose";
 
 const userSchema = new Schema({
   name: {
@@ -14,6 +14,8 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  image: { url: String, fileId: String },
+  about: String,
 });
 
 const User = model("User", userSchema);

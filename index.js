@@ -31,5 +31,6 @@ mongoose
 app.post("/auth/register", register);
 app.post("/blog", createBlog);
 
+
 app.use("/auth", authRoute);
 app.use("/blog", blogRoute);
