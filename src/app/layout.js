@@ -12,6 +12,7 @@ export default function RootLayout({ children }) {
   return (
     <Provider store={store}>
       <html lang="en">
+        <head><title>Story Sage</title></head>
         <body className={inter.className}>{children}</body>
       </html>
     </Provider>
