@@ -1,34 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Weather App
 
-First, run the development server:
+Fully responsive, smooth and aesthetic UI based Fullstack blog website where you can share and comment you ideas and views.
+
+## Screenshots
+
+![App Screenshot](https://ik.imagekit.io/octivion/Portfolio/Screenshot_2023-07-15_212847_m0DCzIpY_.png?updatedAt=1689599161879)
+![App Screenshot](https://ik.imagekit.io/octivion/Portfolio/Screenshot_2023-07-17_183103_IWC5L_j7i.png?updatedAt=1689599178234)
+![App Screenshot](https://ik.imagekit.io/octivion/Portfolio/Screenshot_2023-07-17_183127_5KCexIjey.png?updatedAt=1689599180433)
+![App Screenshot](https://ik.imagekit.io/octivion/Portfolio/Screenshot_2023-07-17_183352_v_dZ30MzW.png?updatedAt=1689599158414)
+![App Screenshot](https://ik.imagekit.io/octivion/Portfolio/Screenshot_2023-07-17_183410_8zLHaytIQ.png?updatedAt=1689599163287)
+
+
+## Deployment
+
+Deployed on [Vercel](https://vercel.com/dashboard).
+
+You can check the app at (https://storysage.vercel.app/)
+
+
+## Run Locally
+
+Clone the project
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+  git clone https://link-to-project
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go to the project directory
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+```bash
+  cd my-project
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Install dependencies
 
-## Learn More
+```bash
+  npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+Start the server
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+  npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Social platform:**  A common social platform to share your view and comment on other blogs.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+**Fast:**  It is based on NextJs react framework with server side rendering and fast navigation.
+
+**Responsive Design:**  The app is designed to be responsive and works seamlessly on different devices and screen sizes.
+
+**Security:**  Password is hashed and it is one way process.
+
+## Appendix
+
+Any additional information goes here
+
+- [React](https://react.dev/)
+- [Tailwind](https://tailwindcss.com/docs/)
+- [NextJS](https://nextjs.org/)
+- [MongoDB](https://www.mongodb.com/)
+- [Express](https://expressjs.com/)
+## Authors
+
+[Octivion](hhttps://rkcodes.vercel.app/)
+
