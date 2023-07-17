@@ -36,7 +36,7 @@ const Home = () => {
       ) : (
         <div className="flex flex-col-reverse lg:flex-row justify-around pt-20 gap-8 px-10">
           <Profile />
-          <div className="flex flex-col w-full lg:w-1/2  gap-10 pb-14">
+          <div className="flex flex-col w-full lg:w-1/2  gap-10 pb-10">
             {blogs?.reverse().map((blog, index) => (
               <BlogCard key={index} data={blog} />
             ))}

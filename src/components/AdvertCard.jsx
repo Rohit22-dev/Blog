@@ -5,7 +5,7 @@ import advert from "../../public/images/advert.jpeg";
 const AdvertCard = () => {
   return (
     <div className="w-full lg:w-[30%] h-fit bg-gray-100 lg:sticky top-[130px] rounded-md p-3 ">
-      <div className="flex flex-col border-teal-700 border h-full rounded-md p-2">
+      <div className="flex flex-col border-teal-500 border h-full rounded-md p-2">
         <div className="flex items-center justify-between">
           <h2 className="font-sans">Sponsored</h2>
           <p className="text-slate-500 text-sm italic ">Create ad</p>

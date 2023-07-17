@@ -44,8 +44,8 @@ const Navbar = () => {
 
   return (
     <div className="w-full sticky top-0 flex justify-between md:justify-around px-10 md:px-6 lg:px-16 py-2 shadow-md shadow-teal-500 bg-teal-400 ">
-      <h1 className="font-bold text-xl inline">Blog</h1>
-      <nav className="md:flex gap-4 w-1/2 md:gap-6 px-4 md:px-20 lg:px-32 items-center hidden">
+      <h1 className="font-bold text-xl inline self-center">Blog</h1>
+      <nav className="md:flex w-1/2 gap-10 lg:gap-20 items-center hidden">
         <CustomLink link="/" title="Home" />
         <CustomLink link="/blog" title="Blog" />
         <CustomLink link="/about" title="About" />
@@ -92,7 +92,9 @@ const Navbar = () => {
 
       <div
         className={`flex md:hidden flex-col items-center pt-20 h-screen rounded-lg ${
-          isOpen ? "x w-3/5 sm:w-1/2 px-16 divide-teal-400 divide-y-2" : "w-0"
+          isOpen
+            ? "x w-3/5 sm:w-1/2 px-16 divide-teal-400 divide-y-2"
+            : "hidden"
         } backdrop-blur-sm right-0 absolute bg-teal-500/30 top-0 transition-all ease-in-out duration-300`}
       >
         <CustomMobileLink link="/" title="Home" />
