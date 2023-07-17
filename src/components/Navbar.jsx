@@ -1,3 +1,4 @@
+"use client";
 import { setLogin } from "@/store/slice";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -64,9 +65,9 @@ const Navbar = () => {
       </div>
 
       <div className="px-2 p-1 rounded-lg font-semibold flex md:hidden items-center gap-2 shadow-md shadow-teal-600 border-[1px] border-teal-500 ">
-          <FaRegUser />
-          {user?.name}
-        </div>
+        <FaRegUser />
+        {user?.name}
+      </div>
 
       <button
         className="flex-col justify-center items-center flex md:hidden z-50"
