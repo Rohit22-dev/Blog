@@ -29,7 +29,6 @@ const Login = () => {
     e.preventDefault();
     if (isRegister) {
       try {
-        console.log(user);
         await fetch("https://blog-zlon.onrender.com/auth/register", {
           method: "POST",
           headers: {
@@ -38,7 +37,6 @@ const Login = () => {
           body: JSON.stringify(user),
         });
         setType("Login");
-        console.log("data", data);
       } catch (error) {
         console.log(error);
       }
@@ -131,10 +129,10 @@ const Login = () => {
             </span>
           </div>
         </div>
-        <button className="bg-teal-700 h-10 py-2 mt-4 rounded-lg text-white shadow-md shadow-black/50 hover:shadow-none ">
+        <button className="bg-teal-700 hover:bg-teal-500 hover:border hover:text-black hover:border-teal-700 h-10 py-2 mt-4 rounded-lg text-white shadow-md shadow-black/50 hover:shadow-none ">
           {isLogin ? (
             isLoading ? (
-              <PropagateLoader loading={isLoading} color="#2dd4bf" size={10} />
+              <PropagateLoader loading={isLoading} color="#0d9488" size={10} />
             ) : (
               "Login"
             )

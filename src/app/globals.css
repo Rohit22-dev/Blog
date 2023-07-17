@@ -14,8 +14,13 @@ label {
   @apply lg:text-xl font-medium text-black/75;
 }
 
+.user-about {
+  @apply p-1 flex-1 bg-white w-full rounded-md mx-4;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
+  z-index: 999;
 }
 
 /* Track */
@@ -31,6 +36,5 @@ label {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #fff;
+  background: #08433e;
 }
-
