@@ -6,6 +6,7 @@ Fully responsive, smooth and aesthetic UI based Fullstack blog website where you
 ##Branches
 
 [main](https://github.com/Rohit22-dev/Blog) - for client side code
+
 [backend](https://github.com/Rohit22-dev/Blog/tree/backend) - for server side code
 
 ## Screenshots
