@@ -3,6 +3,11 @@
 
 Fully responsive, smooth and aesthetic UI based Fullstack blog website where you can share and comment you ideas and views.
 
+##Branches
+
+[main](https://github.com/Rohit22-dev/Blog) - for client side code
+[backend](https://github.com/Rohit22-dev/Blog/tree/backend) - for server side code
+
 ## Screenshots
 
 ![App Screenshot](https://ik.imagekit.io/octivion/Portfolio/Screenshot_2023-07-15_212847_m0DCzIpY_.png?updatedAt=1689599161879)
