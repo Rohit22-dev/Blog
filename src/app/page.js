@@ -26,6 +26,7 @@ const Page = () => {
             alt="Background"
             priority
             fill
+            objectFit="cover"
             className="absolute -z-10"
             quality={100}
           />
