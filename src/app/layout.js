@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <head>
           <title>Story Sage</title>
-          <meta name="description" content="Your meta description here" />F
+          <meta name="description" content="Your meta description here" />
         </head>
         <body className={inter.className}>{children}</body>
       </html>

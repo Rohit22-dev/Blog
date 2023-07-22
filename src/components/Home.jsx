@@ -41,7 +41,7 @@ const Home = () => {
               <BlogCard key={index} data={blog} />
             ))}
           </div>
-          <AdvertCard/>
+          <AdvertCard />
         </div>
       )}
     </>

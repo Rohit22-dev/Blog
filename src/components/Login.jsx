@@ -68,7 +68,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex-grow flex items-center justify-center bg-img">
+    <div className="flex-grow flex items-center justify-center">
       <form
         onSubmit={handleSubmit}
         className={

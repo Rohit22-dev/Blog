@@ -114,8 +114,8 @@ const Profile = () => {
             onChange={handleProfileChange}
           />
         </label>
-        <p className="font-semibold text-lg mt-2">{user.name}</p>
-        <p className="font-medium text-sm">{user.email}</p>
+        <p className="font-semibold text-lg mt-2">{user?.name}</p>
+        <p className="font-medium text-sm">{user?.email}</p>
         <p className="text-start text-sm w-full mt-2 px-2 flex items-center justify-between">
           About:
           {edit ? (
