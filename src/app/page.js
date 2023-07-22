@@ -13,7 +13,7 @@ const Page = () => {
 
   return (
     <>
-      {!user ? (
+      {user ? (
         <Layout>
           <Home />
         </Layout>
