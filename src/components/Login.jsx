@@ -140,14 +140,11 @@ const Login = () => {
             "Register"
           )}
         </button>
-        {/* {error.isError && (
-          <span className="text-red-500">Error:&nbsp;{error.msg}</span>
-        )} */}
         <p className="text-slate-800 text-sm pl-1 ">
           {isLogin ? "Don't have an account! " : "Already have an account! "}
           &nbsp;
           <span
-            className="text-red-600 underline-offset-2 underline cursor-pointer"
+            className="text-red-950 font-semibold underline-offset-2 underline cursor-pointer"
             onClick={toggleType}
           >
             {isLogin ? "Register" : "Login"}
