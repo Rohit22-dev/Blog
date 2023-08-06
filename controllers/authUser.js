@@ -79,3 +79,16 @@ export const updateProfileAbout = async (req, res) => {
     console.log(err);
   }
 };
+
+// Get all users
+
+export const getAllUsers = async (req, res) => {
+  try {
+    const allUsers = await User.find();
+    res.status(200).json(allUsers);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+    console.log(err);
+  }
+};
+

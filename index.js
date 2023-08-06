@@ -6,7 +6,7 @@ import cors from "cors";
 import { createBlog } from "./controllers/blogs.js";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
-import { register } from "./controllers/authUser.js";
+import { getAllUsers, register } from "./controllers/authUser.js";
 
 dotenv.config();
 const app = express();
@@ -34,3 +34,4 @@ app.post("/blog", createBlog);
 
 app.use("/auth", authRoute);
 app.use("/blog", blogRoute);
+app.use("/users",getAllUsers)
