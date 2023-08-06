@@ -43,7 +43,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-full sticky top-0 flex justify-between md:justify-around px-10 md:px-6 lg:px-16 py-2 shadow-md shadow-teal-500 bg-teal-400 ">
+    <div className="w-full sticky top-0 flex justify-between md:justify-around px-10 md:px-6 lg:px-16 py-2 shadow-md shadow-teal-500 bg-teal-400 z-50">
       <h1 className="font-bold text-xl inline self-center">Blog</h1>
       <nav className="md:flex w-1/2 gap-10 lg:gap-20 items-center hidden">
         <CustomLink link="/" title="Home" />
